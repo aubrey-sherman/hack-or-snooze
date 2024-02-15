@@ -73,8 +73,26 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
+  /*
+  { This is the response
+  "story": {
+    "author": "Matt Lane",
+    "createdAt": "017-11-09T18:38:39.409Z",
+    "storyId": "5081e46e-3143-4c0c-bbf4-c22eb11eb3f5",
+    "title": "The Best Story Ever",
+    "updatedAt": "017-11-09T18:38:39.409Z",
+    "url": "https://www.rithmschool.com/blog/do-web-developers-need-to-be-good-at-math",
+    "username": "hueter"
+  }
+}
+  */
+  // Story instance: {title, author, url, username, storyId, createdAt}
+  async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
+    const token = user.token;
+    const response = await fetch(`${BASE_URL}`)
+
+
   }
 }
 
