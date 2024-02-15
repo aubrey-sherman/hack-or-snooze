@@ -1,6 +1,7 @@
 "use strict";
 
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImlyYS1nbGFzcyIsImlhdCI6MTcwODAyMjI1Mn0.dH4sHzlR0LLLcNBJfT8 - MYLPtJNE4YCe8cIiW6AG97k";
 
 /******************************************************************************
  * Story: a single story in the system
@@ -27,7 +28,7 @@ class Story {
     // FIXME: complete this function!
     return "hostname.com";
   }
-}
+};
 
 
 /******************************************************************************
@@ -89,12 +90,32 @@ class StoryList {
   // Story instance: {title, author, url, username, storyId, createdAt}
   async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
-    const token = user.token;
-    const response = await fetch(`${BASE_URL}`)
+    const userToken = user.token;
 
+    const newStoryParams = JSON.stringify({
+      token: userToken,
+      story:
+        { author: newStory.author, title: newStory.title, url: newStory.url }
+    });
 
+    const response = await fetch(`${BASE_URL}/stories`, { method: "POST", body: `${newStoryParams}` });
+
+    return response.json();
   }
 }
+
+/*
+What our requests will look like
+{
+  "token": "PASTE_YOUR_TOKEN_HERE",
+    "story":
+  {
+    "author": "Elie Schoppik",
+      "title": "Four Tips for Moving Faster as a Developer",
+        "url": "https://www.rithmschool.com/blog/developer-productivity"
+  }
+}
+*/
 
 
 /******************************************************************************
