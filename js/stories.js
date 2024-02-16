@@ -51,10 +51,14 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-/**  */
-$("#submit-story-btn").on("click", getNewStoryData);
+/** $body.on("click", "#nav-all", navAllStories);
+ */
 
-async function getNewStoryData() {
+$("#story-submit-btn").on("click", getNewStoryData);
+
+async function getNewStoryData(evt) {
+  evt.preventDefault();
+  console.log(' get new story is being called')
   const newAuthor = $authorInputField.val;
   const newTitle = $titleInputField.val;
   const newUrl = $urlInputField.val;
@@ -71,7 +75,7 @@ async function getNewStoryData() {
 }
 
 function displayNewStory(newStory) {
-  console.log("I'm a working function!!!");
+  console.log("display new story is a working function!!!");
   const title = newStory.title;
   const author = newStory.title;
   const url = newStory.url;
