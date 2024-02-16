@@ -85,15 +85,14 @@ function displayNewStory(newStory) {
   const author = newStory.title;
   const url = newStory.url;
   const username = newStory.username;
+  debugger;
 
-  $('#all-stories-list')
-    .html('<li> </li>');
 
-  const $newListItem = $("<li>")
-    .html(`<a class="story-link" href=${url}>${title}</a>`)
-    .html(`<small class="story-hostname">${url}</small>`)
-    .html(`<small class="story-author">by ${author}</small>`)
-    .html(`<small class="story-user">posted by ${username}`);
+  const $newListItem = $("<li>");
+  $newListItem.append(`<a class="story-link" href=${url}>${title}</a>`);
+  $newListItem.append(`<small class="story-hostname">${url}</small>`);
+  $newListItem.append(`<small class="story-author">by ${author}</small>`);
+  $newListItem.append(`<small class="story-user">posted by ${username}`);
 
   $allStoriesList.prepend($newListItem);
 
