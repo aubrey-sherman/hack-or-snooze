@@ -40,12 +40,9 @@ function hidePageComponents() {
 
 async function start() {
   console.debug("start");
-  debugger;
   // "Remember logged-in user" and log in, if credentials in localStorage
   await checkForRememberedUser();
-  debugger;
   await getAndShowStoriesOnStart();
-  debugger;
 
   // if we got a logged-in user
   if (currentUser) updateUIOnUserLogin();

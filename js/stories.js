@@ -64,27 +64,29 @@ async function getNewStoryData() {
     url: newUrl,
   };
 
-  // create new li, which will be prepended when added to dom
-  // titles are anchor tags that link to the story
-  // newTitle, newUrl in parentheses and "by" newAuthor
-  // underneath will have "posted by" username
-
-  // add story takes these two:
-  //  user
-  //  obj of {title, author, url}
-  // addStory must be called on an instance of StoryList
   const newStory = await storyList.addStory(currentUser, newStoryData);
-  return newStory;
+
+  displayNewStory(newStory);
+  //return newStory;
 }
 
 function displayNewStory(newStory) {
+  console.log("I'm a working function!!!");
   const title = newStory.title;
   const author = newStory.title;
   const url = newStory.url;
   const username = newStory.username;
 
   $('#all-stories-list')
-  .html('<li> </li>');
+    .html('<li> </li>');
+
+  const $newListItem = $("<li>")
+    .html(`<a class="story-link" href=${url}>${title}</a>`)
+    .html(`<small class="story-hostname">${url}</small>`)
+    .html(`<small class="story-author">by ${author}</small>`)
+    .html(`<small class="story-user">posted by ${username}`);
+
+  $allStoriesList.prepend($newListItem);
 
 }
 
