@@ -52,20 +52,45 @@ function putStoriesOnPage() {
 }
 
 /**  */
-$("#submit-story-btn").on("click", displayNewStory);
+$("#submit-story-btn").on("click", getNewStoryData);
 
-
-function displayNewStory() {
-
+async function getNewStoryData() {
   const newAuthor = $authorInputField.val;
   const newTitle = $titleInputField.val;
   const newUrl = $urlInputField.val;
+  const newStoryData = {
+    title: newTitle,
+    author: newAuthor,
+    url: newUrl,
+  };
 
   // create new li, which will be prepended when added to dom
   // titles are anchor tags that link to the story
   // newTitle, newUrl in parentheses and "by" newAuthor
   // underneath will have "posted by" username
 
-  const newStory = await addStory();
+  // add story takes these two:
+  //  user
+  //  obj of {title, author, url}
+  // addStory must be called on an instance of StoryList
+  const newStory = await storyList.addStory(currentUser, newStoryData);
+  return newStory;
+}
+
+function displayNewStory(newStory) {
+  const title = newStory.title;
+  const author = newStory.title;
+  const url = newStory.url;
+  const username = newStory.username;
+
+  $('#all-stories-list')
+  .html('<li> </li>');
 
 }
+
+
+// ( "div.demo-container" )
+//   .html( "<p>All new content. <em>You bet!</em></p>" );
+// async function addAndDisplayNewStory() {
+//   displayNewStory(newStory);
+// }
