@@ -37,14 +37,15 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
 }
 
-const $navSubmitLink = $("#submit-link");
-$navSubmitLink.on("click", showNewStory);
+// nav submit link shows the hidden forms for story submission
+const $navSubmitLink = $(".submit-link");
+$navSubmitLink.on("click", showNewStoryForm);
 
 /** */
 
-function showNewStory() {
+function showNewStoryForm() {
   // make new story form appear
-
+  $storySubmitForm.show();
 
 }
 
