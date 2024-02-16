@@ -50,3 +50,22 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+/**  */
+$("#submit-story-btn").on("click", displayNewStory);
+
+
+function displayNewStory() {
+
+  const newAuthor = $authorInputField.val;
+  const newTitle = $titleInputField.val;
+  const newUrl = $urlInputField.val;
+
+  // create new li, which will be prepended when added to dom
+  // titles are anchor tags that link to the story
+  // newTitle, newUrl in parentheses and "by" newAuthor
+  // underneath will have "posted by" username
+
+  const newStory = await addStory();
+
+}

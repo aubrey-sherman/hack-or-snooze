@@ -16,13 +16,17 @@ const $navLogOut = $("#nav-logout");
 
 const $storySubmitForm = $("#story-submit-form");
 
+const $authorInputField = $("#author-input");
+const $titleInputField = $("title-input");
+const $urlInputField = $("url-input");
+
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
  * calling this, individual components can re-show just what they want.
  */
 
 function hidePageComponents() {
-  console.log('hiding page components', $storySubmitForm)
+  console.log('hiding page components', $storySubmitForm);
   const components = [
     $allStoriesList,
     $loginForm,
@@ -30,7 +34,7 @@ function hidePageComponents() {
     $storySubmitForm
   ];
   components.forEach(c => c.hide());
-}
+};
 
 /** Overall function to kick off the app. */
 
