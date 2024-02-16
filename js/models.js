@@ -78,6 +78,7 @@ class StoryList {
   // Story instance constructor: {title, author, url, username, storyId, createdAt}
   async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
+    console.log("newStory is=", newStory);
     console.log('user login token', user.loginToken);
 
     const userToken = user.loginToken;
@@ -87,6 +88,7 @@ class StoryList {
         { author: newStory.author, title: newStory.title, url: newStory.url }
     });
 
+    console.log("storyRequestParams=", storyRequestParams);
     const response = await fetch(`${BASE_URL}/stories`, { method: "POST", body: `${storyRequestParams}` });
     console.log('response is', response);
 

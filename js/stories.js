@@ -58,10 +58,15 @@ $("#story-submit-btn").on("click", getNewStoryData);
 
 async function getNewStoryData(evt) {
   evt.preventDefault();
-  console.log(' get new story is being called')
-  const newAuthor = $authorInputField.val;
-  const newTitle = $titleInputField.val;
-  const newUrl = $urlInputField.val;
+  //console.log(' get new story is being called')
+  const newAuthor = $authorInputField.val();
+  const newTitle = $titleInputField.val();
+  const newUrl = $urlInputField.val();
+
+  console.log("newAuthor=", newAuthor);
+  console.log("newTitle=", newUrl);
+  console.log("newUrl=", newUrl);
+
   const newStoryData = {
     title: newTitle,
     author: newAuthor,
