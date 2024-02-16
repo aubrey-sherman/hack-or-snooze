@@ -26,8 +26,20 @@ class Story {
 
   getHostName() {
     // FIXME: complete this function!
-    return "hostname.com";
+    // http://  google.com  /trees/
+    // search for index of "/" i + 2
+    // search for last index of ".com" // e + 4
+    // return slice string with (i, e)
+
+    let i = this.url.indexOf("/") + 2;
+    let e = this.url.indexOf(".com") + 4;
+
+    const hostName = this.url.slice(i, e);
+
+    return hostName;
   }
+
+
 };
 
 
@@ -103,6 +115,7 @@ class StoryList {
       storyId: storyData.storyId,
       createdAt: storyData.createdAt,
     };
+
     const addedStory = new Story(newStoryParams);
 
     return addedStory;
