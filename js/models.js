@@ -74,35 +74,39 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  /*
-  { This is the response
-  "story": {
-    "author": "Matt Lane",
-    "createdAt": "017-11-09T18:38:39.409Z",
-    "storyId": "5081e46e-3143-4c0c-bbf4-c22eb11eb3f5",
-    "title": "The Best Story Ever",
-    "updatedAt": "017-11-09T18:38:39.409Z",
-    "url": "https://www.rithmschool.com/blog/do-web-developers-need-to-be-good-at-math",
-    "username": "hueter"
-  }
-}
-  */
-  // Story instance: {title, author, url, username, storyId, createdAt}
+
+  // Story instance constructor: {title, author, url, username, storyId, createdAt}
   async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
-    const userToken = user.token;
+    console.log('user login token', user.loginToken);
 
-    const newStoryParams = JSON.stringify({
+    const userToken = user.loginToken;
+    const storyRequestParams = JSON.stringify({
       token: userToken,
       story:
         { author: newStory.author, title: newStory.title, url: newStory.url }
     });
 
-    const response = await fetch(`${BASE_URL}/stories`, { method: "POST", body: `${newStoryParams}` });
+    const response = await fetch(`${BASE_URL}/stories`, { method: "POST", body: `${storyRequestParams}` });
+    console.log('response is', response);
 
-    return response.json();
+    const data = await response.json();
+    const storyData = data.story;
+
+    const newStoryParams = {
+      title: storyData.title,
+      author: storyData.title,
+      url: storyData.url,
+      username: storyData.username,
+      storyId: storyData.storyId,
+      createdAt: storyData.createdAt,
+    };
+    const addedStory = new Story(newStoryParams);
+
+    return addedStory;
   }
 }
+
 
 /*
 What our requests will look like
