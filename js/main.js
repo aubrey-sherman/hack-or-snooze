@@ -26,7 +26,6 @@ const $urlInputField = $("#url-input");
  */
 
 function hidePageComponents() {
-  console.log('hiding page components', $storySubmitForm);
   const components = [
     $allStoriesList,
     $loginForm,

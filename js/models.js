@@ -25,20 +25,10 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // FIXME: complete this function!
-    // http://  google.com  /trees/
-    // search for index of "/" i + 2
-    // search for last index of ".com" // e + 4
-    // return slice string with (i, e)
+    const hostName = new URL(this.url);
 
-    let i = this.url.indexOf("/") + 2;
-    let e = this.url.indexOf(".com") + 4;
-
-    const hostName = this.url.slice(i, e);
-
-    return hostName;
+    return hostName.hostname;
   }
-
 
 };
 
@@ -86,13 +76,7 @@ class StoryList {
    * Returns the new Story instance
    */
 
-
-  // Story instance constructor: {title, author, url, username, storyId, createdAt}
   async addStory(user, newStory) {
-    // UNIMPLEMENTED: complete this function!
-    console.log("newStory is=", newStory);
-    console.log('user login token', user.loginToken);
-
     const userToken = user.loginToken;
     const storyRequestParams = JSON.stringify({
       token: userToken,
@@ -100,10 +84,7 @@ class StoryList {
         { author: newStory.author, title: newStory.title, url: newStory.url }
     });
 
-    console.log("storyRequestParams=", storyRequestParams);
     const response = await fetch(`${BASE_URL}/stories`, { method: "POST", body: `${storyRequestParams}` });
-    console.log('response is', response);
-
     const data = await response.json();
     const storyData = data.story;
 
@@ -121,20 +102,6 @@ class StoryList {
     return addedStory;
   }
 }
-
-
-/*
-What our requests will look like
-{
-  "token": "PASTE_YOUR_TOKEN_HERE",
-    "story":
-  {
-    "author": "Elie Schoppik",
-      "title": "Four Tips for Moving Faster as a Developer",
-        "url": "https://www.rithmschool.com/blog/developer-productivity"
-  }
-}
-*/
 
 
 /******************************************************************************

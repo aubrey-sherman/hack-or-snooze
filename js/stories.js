@@ -2,6 +2,7 @@
 
 // This is the global list of the stories, an instance of StoryList
 let storyList;
+const $storySubmitBtn = $("#story-submit-btn");
 
 /** Get and show stories when site first loads. */
 
@@ -51,21 +52,12 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-/** $body.on("click", "#nav-all", navAllStories);
- */
+/** Creates a new Story instance from the story submit form and returns it */
 
-$("#story-submit-btn").on("click", getNewStoryData);
-
-async function getNewStoryData(evt) {
-  evt.preventDefault();
-  //console.log(' get new story is being called')
+async function getNewStory() {
   const newAuthor = $authorInputField.val();
   const newTitle = $titleInputField.val();
   const newUrl = $urlInputField.val();
-
-  console.log("newAuthor=", newAuthor);
-  console.log("newTitle=", newUrl);
-  console.log("newUrl=", newUrl);
 
   const newStoryData = {
     title: newTitle,
@@ -75,9 +67,29 @@ async function getNewStoryData(evt) {
 
   const newStory = await storyList.addStory(currentUser, newStoryData);
 
-  displayNewStory(newStory);
-  //return newStory;
+  return newStory;
 }
+
+/** Takes a Story instance and displays at top of storylist */
+
+function displayNewStory(newStory) {
+  $allStoriesList.prepend(generateStoryMarkup(newStory));
+}
+
+/** Creates a new story and displays it on the page */
+
+async function getAndDisplayNewStory(evt) {
+  evt.preventDefault();
+  const newStoryData = await getNewStory();
+  displayNewStory(newStoryData);
+}
+
+$storySubmitBtn.on("click", getAndDisplayNewStory);
+
+
+
+/*
+All of this was written before we noticed the generateStoryMarkup function.
 
 function displayNewStory(newStory) {
   console.log("display new story is a working function!!!");
@@ -98,9 +110,4 @@ function displayNewStory(newStory) {
 
 }
 
-
-// ( "div.demo-container" )
-//   .html( "<p>All new content. <em>You bet!</em></p>" );
-// async function addAndDisplayNewStory() {
-//   displayNewStory(newStory);
-// }
+*/

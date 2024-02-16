@@ -5,6 +5,7 @@
  */
 
 /** Show main list of all stories when click site name */
+const $navSubmitLink = $(".submit-link");
 
 function navAllStories(evt) {
   console.debug("navAllStories", evt);
@@ -37,19 +38,12 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
 }
 
-// nav submit link shows the hidden forms for story submission
-const $navSubmitLink = $(".submit-link");
-$navSubmitLink.on("click", showNewStoryForm);
 
-/** */
+/** Make story submit form appear */
 
-function showNewStoryForm() {
-  // make new story form appear
+function showStorySubmitForm() {
   $storySubmitForm.show();
-
 }
 
-
-
-
+$navSubmitLink.on("click", showStorySubmitForm);
 
