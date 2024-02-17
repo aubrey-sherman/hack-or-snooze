@@ -80,6 +80,9 @@ function displayNewStory(newStory) {
 
 async function getAndDisplayNewStory(evt) {
   evt.preventDefault();
+  $storySubmitForm.trigger("reset");
+  $storySubmitForm.hide();
+
   const newStoryData = await getNewStory();
   displayNewStory(newStoryData);
 }

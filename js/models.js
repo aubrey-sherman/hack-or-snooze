@@ -134,6 +134,12 @@ class User {
     this.loginToken = token;
   }
 
+  async favoriteStory(newStory) {
+
+
+
+  }
+
   /** Register new user in API, make User instance & return it.
    *
    * - username: a new username
